@@ -1,0 +1,10 @@
+node_modules/
+bin/
+logs/
+target/
+build/
+config/
+*.json
+*.idea
+*.iml
+webpack*
