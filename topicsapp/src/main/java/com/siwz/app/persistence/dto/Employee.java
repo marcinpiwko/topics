@@ -1,12 +1,10 @@
 package com.siwz.app.persistence.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
