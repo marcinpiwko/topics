@@ -25,12 +25,16 @@ public class HelloAction extends VerticalLayout {
         button.addClickListener(clickEvent -> {
             try {
                 label.setText(null);
-                URL getEmployeeEndpoint = new URL("http://localhost:8900/api/employees/" + textField.getValue());
+                URL getEmployeeEndpoint = new URL("http://localhost:8900/employees/" + textField.getValue());
                 InputStreamReader employeeReader = new InputStreamReader(getEmployeeEndpoint.openStream());
                 JsonObject jsonObject = new JsonParser().parse(employeeReader).getAsJsonObject();
                 label.setText("Imię: " + jsonObject.get("firstName").getAsString() + ", nazwisko: " + jsonObject.get("lastName").getAsString());
             } catch(IOException e) {
-                //do something
+                if(e.getClass().getName().contains("NotFound")) {
+                    label.setText("Nie znaleziono pracownika");
+                } else {
+                    label.setText("Inny błąd serwera");
+                }
             }
         });
         add(textField, button, label);
