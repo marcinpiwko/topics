@@ -25,6 +25,7 @@ public class EmployeeTranslator {
         Employee employee = new Employee();
         employee.setFirstName(employeeCreateRequest.getFirstName());
         employee.setLastname(employeeCreateRequest.getLastName());
+        employee.setSalary(employeeCreateRequest.getSalary());
         return employee;
     }
 
