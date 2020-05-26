@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErrorForm implements Form {
+public class ErrorResponse implements ResponseForm {
 
     @Schema(description = "HTTP status error code",
             example = "404")

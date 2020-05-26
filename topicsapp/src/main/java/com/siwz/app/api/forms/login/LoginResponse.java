@@ -1,4 +1,4 @@
-package com.siwz.app.api.forms.employee;
+package com.siwz.app.api.forms.login;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.siwz.app.api.forms.ResponseForm;
@@ -8,11 +8,10 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class EmployeeCreateResponse implements ResponseForm {
+public class LoginResponse implements ResponseForm {
 
-    @Schema(description = "Employee Id",
-            example = "69")
+    @Schema(description = "JSON Web Token")
     @JsonProperty
     @NotNull
-    private Long employeeId;
+    private String token;
 }

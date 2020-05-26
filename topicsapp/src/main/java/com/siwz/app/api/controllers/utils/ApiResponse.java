@@ -1,7 +1,7 @@
 package com.siwz.app.api.controllers.utils;
 
-import com.siwz.app.api.forms.ErrorForm;
-import com.siwz.app.api.forms.Form;
+import com.siwz.app.api.forms.ErrorResponse;
+import com.siwz.app.api.forms.ResponseForm;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -11,19 +11,19 @@ public class ApiResponse {
 
     }
 
-    public static ResponseEntity<? extends Form> notFound(Long id, String domain) {
-        return new ResponseEntity<>(new ErrorForm(HttpStatus.NOT_FOUND.toString(), domain + " with id " + id + " not found"), HttpStatus.NOT_FOUND);
+    public static ResponseEntity<? extends ResponseForm> notFound(Long id, String domain) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.toString(), domain + " with id " + id + " not found"), HttpStatus.NOT_FOUND);
     }
 
-    public static ResponseEntity<? extends Form> badRequest() {
-        return new ResponseEntity<>(new ErrorForm(HttpStatus.BAD_REQUEST.toString(), "Something bad happen with your request"), HttpStatus.BAD_REQUEST);
+    public static ResponseEntity<? extends ResponseForm> badRequest(String message) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST.toString(), message), HttpStatus.BAD_REQUEST);
     }
 
-    public static ResponseEntity<? extends Form> noContent() {
+    public static ResponseEntity<? extends ResponseForm> noContent() {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    public static ResponseEntity<? extends Form> ok(Form form) {
+    public static ResponseEntity<? extends ResponseForm> ok(ResponseForm form) {
         return new ResponseEntity<>(form, HttpStatus.OK);
     }
 }

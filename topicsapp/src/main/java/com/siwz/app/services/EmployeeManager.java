@@ -51,8 +51,8 @@ public class EmployeeManager implements EmployeeService {
         if(after.getFirstName() != null) {
             before.setFirstName(after.getFirstName());
         }
-        if(after.getLastname() != null) {
-            before.setLastname(after.getLastname());
+        if(after.getLastName() != null) {
+            before.setLastName(after.getLastName());
         }
         employeeRepository.save(before);
     }

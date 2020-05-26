@@ -1,14 +1,13 @@
 package com.siwz.app.api.forms.employee;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.siwz.app.api.forms.Form;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-public class EmployeeCreateRequest implements Form {
+public class EmployeeCreateRequest {
 
     @Schema(description = "Employee first name",
             example = "John")
