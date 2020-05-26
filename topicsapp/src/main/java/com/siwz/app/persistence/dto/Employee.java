@@ -18,7 +18,7 @@ public class Employee {
     private String firstName;
 
     @Column(name = "EMP_LAST_NAME")
-    private String lastname;
+    private String lastName;
 
     @Column(name = "EMP_SALARY")
     private Double salary;

@@ -22,8 +22,6 @@ public class EmployeeApiController implements EmployeeApi {
 
     private final EmployeeTranslator employeeTranslator;
 
-    private static String domain = "Employee";
-
     @Override
     public ResponseEntity<? extends Form> getEmployee(Long id) {
         try {
@@ -31,7 +29,7 @@ public class EmployeeApiController implements EmployeeApi {
             return ApiResponse.ok(employeeTranslator.translateToApiGetResponse(employee));
         } catch (ApplicationException e) {
             if(DAOError.DAO_ITEM_NOT_FOUND.equals(e.getErrorCode())) {
-                return ApiResponse.notFound(id, domain);
+                return ApiResponse.notFound(id, Employee.class.getSimpleName());
             }
             return ApiResponse.badRequest();
         }
@@ -49,7 +47,7 @@ public class EmployeeApiController implements EmployeeApi {
             employeeService.updateEmployee(id, employeeTranslator.translateToService(employeeUpdateRequest));
         } catch (ApplicationException e) {
             if(DAOError.DAO_ITEM_NOT_FOUND.equals(e.getErrorCode())) {
-                return ApiResponse.notFound(id, domain);
+                return ApiResponse.notFound(id, Employee.class.getSimpleName());
             }
             return ApiResponse.badRequest();
         }
@@ -62,7 +60,7 @@ public class EmployeeApiController implements EmployeeApi {
             employeeService.deleteEmployee(id);
         } catch (ApplicationException e) {
             if(DAOError.DAO_ITEM_NOT_FOUND.equals(e.getErrorCode())) {
-                return ApiResponse.notFound(id, domain);
+                return ApiResponse.notFound(id, Employee.class.getSimpleName());
             }
             return ApiResponse.badRequest();
         }
