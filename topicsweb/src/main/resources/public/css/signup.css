@@ -1,0 +1,70 @@
+body {
+    /*background: linear-gradient(180deg, rgba(28, 40, 85, 1) 0%, rgba(52, 61, 95, 1) 69.29%, rgba(95, 99, 114, 1) 88.03%, rgba(128, 128, 128, 1) 100%);*/
+    background: yellow;
+}
+    .login {
+        color: rgba(98, 98, 98, 1);
+        border: 2px solid;
+        border-radius: 0.25rem;
+        margin-left: auto;
+    }
+    .login:hover{
+        color: rgba(58, 58, 58, 1);
+        background: #cccc00;
+        cursor: pointer;
+    }
+
+    label {
+        margin-left: auto;
+    }
+
+    .horizontal{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cap {
+        height: 80vh;
+        width: 50vw;
+        color: rgba(98, 98, 98, 1);
+    }
+    .description{
+        margin-left: auto;
+        margin-right: auto;
+        color: rgba(98, 98, 98, 1);
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .name{
+        margin-left: auto;
+        margin-right: auto;
+        width: 44%;
+    }
+    .email{
+        margin-left: auto;
+        margin-right: auto;
+        width: 44%;
+    }
+    .password{
+        margin-left: auto;
+        margin-right: auto;
+        width: 44%;
+    }
+    .repassword{
+    margin-left: auto;
+    margin-right: auto;
+    width: 44%;
+    }
+    .register{
+        margin-left: auto;
+        margin-right: auto;
+        width: 44%;
+        margin-top: 50.6px;
+    }
+    vaadin-login-form{
+        position: absolute;
+        right: 0;
+        top: 45px;
+    }
+    vaadin-login-form-wrapper{
+        background: yellow;
+    }
