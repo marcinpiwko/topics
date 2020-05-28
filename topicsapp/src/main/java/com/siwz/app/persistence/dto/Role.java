@@ -9,11 +9,17 @@ import javax.persistence.*;
 @Table(name = "ROLES")
 public class Role {
 
+    public enum RoleType {
+        STUDENT,
+        TEACHER
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ROL_ID")
     private Long id;
 
-    @Column(name = "ROL_NAME")
-    private String name;
+    @Column(name = "ROL_TYPE", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RoleType type;
 }

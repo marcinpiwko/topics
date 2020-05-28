@@ -14,4 +14,8 @@ public class LoginResponse implements ResponseForm {
     @JsonProperty
     @NotNull
     private String token;
+
+    public LoginResponse(String token) {
+        this.token = token;
+    }
 }

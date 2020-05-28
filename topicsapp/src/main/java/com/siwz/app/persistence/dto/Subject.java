@@ -14,14 +14,15 @@ public class Subject {
     @Column(name = "SUB_ID")
     private Long id;
 
-    @Column(name = "SUB_NAME")
+    @Column(name = "SUB_NAME", nullable = false)
     private String name;
 
     @Column(name = "SUB_DESCRIPTION")
     private String description;
 
-    @Column(name = "SUB_TEACHER") // TODO foreign key ONLY ADMIN
-    private Long userId;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "USR_ID", name = "SUB_TEACHER", nullable = false)
+    private User user;
 
     @Column(name = "SUB_ECTS")
     private Integer ects;

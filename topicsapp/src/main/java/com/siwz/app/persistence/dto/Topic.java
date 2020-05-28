@@ -15,22 +15,23 @@ public class Topic {
     @Column(name = "TOP_ID")
     private Long id;
 
-    @Column(name = "TOP_NAME")
+    @Column(name = "TOP_NAME", nullable = false)
     private String name;
 
     @Column(name = "TOP_DESCRIPTION")
     private String description;
 
-    @Column(name = "TOP_SUB_ID") // TODO foreign key
-    private Long subjectId;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "SUB_ID", name = "TOP_SUB_ID", nullable = false)
+    private Subject subject;
 
-    @Column(name = "TOP_CREATION_DATE")
+    @Column(name = "TOP_LIMIT", nullable = false)
+    private Long limit;
+
+    @Column(name = "TOP_CREATION_DATE", nullable = false)
     private Date creationDate;
 
     @Column(name = "TOP_DEADLINE_DATE")
     private Date deadlineDate;
-
-    @Column(name = "TOP_REMOVE_DATE")
-    private Date removeDate;
 
 }

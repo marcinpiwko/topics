@@ -15,13 +15,15 @@ public class TopicReservation {
     @Column(name = "TRS_ID")
     private Long id;
 
-    @Column(name = "TRS_TOP_ID") // TODO foreign key
-    private Long topicId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "TOP_ID", name = "TRS_TOP_ID", nullable = false)
+    private Topic topic;
 
-    @Column(name = "TRS_USR_ID") // TODO foreign key
-    private Long userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "USR_ID", name = "TRS_USR_ID", nullable = false)
+    private User user;
 
-    @Column(name = "TRS_RESERVATION_DATE")
+    @Column(name = "TRS_RESERVATION_DATE", nullable = false)
     private Date reservationDate;
 
 }

@@ -11,7 +11,7 @@ public class EmployeeTranslator {
     public EmployeeGetResponse translateToApiGetResponse(Employee employee) {
         EmployeeGetResponse employeeGetResponse = new EmployeeGetResponse();
         employeeGetResponse.setFirstName(employee.getFirstName());
-        employeeGetResponse.setLastName(employee.getLastname());
+        employeeGetResponse.setLastName(employee.getLastName());
         return employeeGetResponse;
     }
 
@@ -24,7 +24,7 @@ public class EmployeeTranslator {
     public Employee translateToService(EmployeeCreateRequest employeeCreateRequest) {
         Employee employee = new Employee();
         employee.setFirstName(employeeCreateRequest.getFirstName());
-        employee.setLastname(employeeCreateRequest.getLastName());
+        employee.setLastName(employeeCreateRequest.getLastName());
         employee.setSalary(employeeCreateRequest.getSalary());
         return employee;
     }
@@ -32,7 +32,7 @@ public class EmployeeTranslator {
     public Employee translateToService(EmployeeUpdateRequest employeeUpdateRequest) {
         Employee employee = new Employee();
         employee.setFirstName(employeeUpdateRequest.getFirstName());
-        employee.setLastname(employeeUpdateRequest.getLastName());
+        employee.setLastName(employeeUpdateRequest.getLastName());
         employee.setSalary(employeeUpdateRequest.getSalary());
         return employee;
     }

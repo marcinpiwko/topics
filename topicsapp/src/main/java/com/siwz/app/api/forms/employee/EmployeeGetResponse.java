@@ -10,13 +10,13 @@ import javax.validation.constraints.NotNull;
 @Data
 public class EmployeeGetResponse implements ResponseForm {
 
-    @Schema(description = "Employee first name",
+    @Schema(description = "Employee first type",
             example = "John")
     @JsonProperty
     @NotNull
     private String firstName;
 
-    @Schema(description = "Employee last name",
+    @Schema(description = "Employee last type",
             example = "Snow")
     @JsonProperty
     @NotNull
