@@ -38,7 +38,10 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public List<User> getUsersByRole(Role.RoleType roleType) { // TODO api endpoint GET /users with required query param role=type
+    public List<User> getUsersByRole(Role.RoleType roleType) throws ApplicationException { // TODO api endpoint GET /users with required query param role=type
+        if(!roleRepository.existsByType(roleType)) {
+            throw new ApplicationException(DAOError.DAO_ROLE_NOT_FOUND, roleType);
+        }
         return userRepository.findByRole(roleRepository.findByType(roleType));
     }
 
@@ -54,7 +57,7 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public List<Topic> getAllUserAssignedTopics(Long userId) { // TODO api endpoint GET /users/{id}/topics
+    public List<Topic> getAllUserAssignedTopics(Long userId) throws ApplicationException { // TODO api endpoint GET /users/{id}/topics
         return topicService.getTopicsByUser(userId);
     }
 

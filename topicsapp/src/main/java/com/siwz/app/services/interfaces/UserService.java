@@ -12,11 +12,11 @@ public interface UserService extends UserDetailsService {
 
     void createUser(User user) throws ApplicationException;
 
-    List<User> getUsersByRole(Role.RoleType role);
+    List<User> getUsersByRole(Role.RoleType role) throws ApplicationException;
 
     User getUserById(Long userId) throws ApplicationException;
 
     Topic getUserAssignedTopicBySubject(Long userId, Long subjectId) throws ApplicationException;
 
-    List<Topic> getAllUserAssignedTopics(Long userId);
+    List<Topic> getAllUserAssignedTopics(Long userId) throws ApplicationException;
 }

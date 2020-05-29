@@ -10,7 +10,10 @@ public enum DAOError implements ApplicationError {
 
     DAO_USER_NOT_FOUND("User {0} not found"),
     DAO_SUBJECT_NOT_FOUND("Subject {0} not found"),
-    DAO_TOPIC_NOT_FOUND("Topic {0} not found")
+    DAO_TOPIC_NOT_FOUND("Topic {0} not found"),
+    DAO_ROLE_NOT_FOUND("Role {0} not found"),
+
+    DAO_NOT_ASSIGNED_TOPIC("No assigned topic to user {0} from subject {1}")
     ;
 
     String message;

@@ -1,5 +1,6 @@
 package com.siwz.app.persistence.repositories;
 
+import com.siwz.app.persistence.dto.Subject;
 import com.siwz.app.persistence.dto.Topic;
 import com.siwz.app.utils.errors.ApplicationException;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, Long> {
 
-    List<Topic> findAllBySubject(Long subjectId);
+    List<Topic> findAllBySubject(Subject subject);
 
     @Query(value = "SELECT t FROM TOPICS t " +
             "WHERE t.top_id = " +
@@ -26,5 +27,5 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
             "WHERE r.trs_usr_id = ?1)", nativeQuery = true)
     List<Topic> findByUser(Long userId);
 
-    Optional<Topic> findByIdAndSubject(Long topicId, Long subjectId) throws ApplicationException;
+    Optional<Topic> findByIdAndSubject(Long topicId, Subject subject) throws ApplicationException;
 }

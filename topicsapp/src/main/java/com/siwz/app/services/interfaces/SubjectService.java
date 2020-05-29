@@ -12,7 +12,7 @@ public interface SubjectService {
 
     Subject getSubjectById(Long subjectId) throws ApplicationException;
 
-    List<Topic> getSubjectTopics(Long subjectId);
+    List<Topic> getSubjectTopics(Long subjectId) throws ApplicationException;
 
     Topic getSubjectTopicById(Long subjectId, Long topicId) throws ApplicationException;
 

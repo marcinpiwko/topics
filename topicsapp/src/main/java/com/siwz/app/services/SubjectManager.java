@@ -33,7 +33,7 @@ public class SubjectManager implements SubjectService {
     }
 
     @Override
-    public List<Topic> getSubjectTopics(Long subjectId) { // TODO api endpoint GET /subjects/{id}/topics
+    public List<Topic> getSubjectTopics(Long subjectId) throws ApplicationException { // TODO api endpoint GET /subjects/{id}/topics
         return topicService.getTopicsBySubject(subjectId);
     }
 
