@@ -11,8 +11,8 @@ public class ApiResponse {
 
     }
 
-    public static ResponseEntity<? extends ResponseForm> notFound(Long id, String domain) {
-        return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.toString(), domain + " with id " + id + " not found"), HttpStatus.NOT_FOUND);
+    public static ResponseEntity<? extends ResponseForm> notFound(String message) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.toString(), message), HttpStatus.NOT_FOUND);
     }
 
     public static ResponseEntity<? extends ResponseForm> badRequest(String message) {

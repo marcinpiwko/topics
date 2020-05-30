@@ -24,6 +24,6 @@ public enum DAOError implements ApplicationError {
 
     @Override
     public String getMessage() {
-        return null;
+        return message;
     }
 }

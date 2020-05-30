@@ -29,7 +29,7 @@ public class EmployeeApiController implements EmployeeApi {
             return ApiResponse.ok(employeeTranslator.translateToApiGetResponse(employee));
         } catch (ApplicationException e) {
             if(DAOError.DAO_ITEM_NOT_FOUND.equals(e.getErrorCode())) {
-                return ApiResponse.notFound(id, Employee.class.getSimpleName());
+                return ApiResponse.notFound(e.getMessage());
             }
             return ApiResponse.badRequest(e.getMessage());
         }
@@ -47,7 +47,7 @@ public class EmployeeApiController implements EmployeeApi {
             employeeService.updateEmployee(id, employeeTranslator.translateToService(employeeUpdateRequest));
         } catch (ApplicationException e) {
             if(DAOError.DAO_ITEM_NOT_FOUND.equals(e.getErrorCode())) {
-                return ApiResponse.notFound(id, Employee.class.getSimpleName());
+                return ApiResponse.notFound(e.getMessage());
             }
             return ApiResponse.badRequest(e.getMessage());
         }
@@ -60,7 +60,7 @@ public class EmployeeApiController implements EmployeeApi {
             employeeService.deleteEmployee(id);
         } catch (ApplicationException e) {
             if(DAOError.DAO_ITEM_NOT_FOUND.equals(e.getErrorCode())) {
-                return ApiResponse.notFound(id, Employee.class.getSimpleName());
+                return ApiResponse.notFound(e.getMessage());
             }
             return ApiResponse.badRequest(e.getMessage());
         }
