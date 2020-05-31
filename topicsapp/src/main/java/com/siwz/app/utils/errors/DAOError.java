@@ -7,6 +7,7 @@ public enum DAOError implements ApplicationError {
 
     DAO_USER_ALREADY_EXISTS("User {0} already exists"),
     DAO_SUBJECT_ALREADY_EXISTS("Subject {0} already exists"),
+    DAO_TOPIC_ALREADY_EXISTS("Topic {0} already exists"),
 
     DAO_USER_NOT_FOUND("User {0} not found"),
     DAO_SUBJECT_NOT_FOUND("Subject {0} not found"),

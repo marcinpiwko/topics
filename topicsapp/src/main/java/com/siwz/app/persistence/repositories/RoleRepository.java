@@ -4,10 +4,12 @@ import com.siwz.app.persistence.dto.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    Role findByType(Role.RoleType type);
+    Optional<Role> findByType(Role.RoleType type);
 
     Boolean existsByType(Role.RoleType type);
 }

@@ -10,7 +10,11 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
-    void createUser(User user) throws ApplicationException;
+    Long createUser(User user) throws ApplicationException;
+
+    void updateUser(Long userId, User newUser) throws ApplicationException;
+
+    void deleteUser(Long userId) throws ApplicationException;
 
     List<User> getUsersByRole(Role.RoleType role) throws ApplicationException;
 

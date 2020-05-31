@@ -21,4 +21,12 @@ public interface SubjectService {
     void deleteSubject(Long subjectId);
 
     void updateSubject(Long subjectId, Subject newSubject) throws ApplicationException;
+
+    Long createSubjectTopic(Long subjectId, Topic topic) throws ApplicationException;
+
+    void updateSubjectTopic(Long subjectId, Long topicId, Topic topic) throws ApplicationException;
+
+    void deleteSubjectTopic(Long subjectId, Long topicId) throws ApplicationException;
+
+    Boolean checkIfSubjectExists(Long subjectId);
 }
