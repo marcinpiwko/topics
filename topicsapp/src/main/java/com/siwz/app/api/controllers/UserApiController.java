@@ -1,6 +1,7 @@
 package com.siwz.app.api.controllers;
 
 import com.siwz.app.api.controllers.utils.ApiResponse;
+import com.siwz.app.api.forms.IdResponse;
 import com.siwz.app.api.forms.ResponseForm;
 import com.siwz.app.api.forms.user.UserCreateRequest;
 import com.siwz.app.api.interfaces.UserApi;
@@ -24,8 +25,8 @@ public class UserApiController implements UserApi {
     @Override
     public ResponseEntity<? extends ResponseForm> createUser(@Valid UserCreateRequest userCreateRequest) {
         try {
-            userService.createUser(userTranslator.translateToService(userCreateRequest));
-            return ApiResponse.noContent();
+            Long userId = userService.createUser(userTranslator.translateToService(userCreateRequest));
+            return ApiResponse.ok(new IdResponse(userId));
         } catch(ApplicationException e) {
             return ApiResponse.badRequest(e.getMessage());
         }

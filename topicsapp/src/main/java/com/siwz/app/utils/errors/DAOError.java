@@ -2,7 +2,6 @@ package com.siwz.app.utils.errors;
 
 public enum DAOError implements ApplicationError {
 
-    DAO_ITEM_NOT_FOUND("Not found item by id: {0}"),
     DAO_INVALID_CREDENTIALS("Invalid username or password"),
 
     DAO_USER_ALREADY_EXISTS("User {0} already exists"),

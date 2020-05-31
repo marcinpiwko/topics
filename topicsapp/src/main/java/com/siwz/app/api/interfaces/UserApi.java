@@ -1,8 +1,11 @@
 package com.siwz.app.api.interfaces;
 
+import com.siwz.app.api.forms.IdResponse;
 import com.siwz.app.api.forms.ResponseForm;
 import com.siwz.app.api.forms.user.UserCreateRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,7 +22,7 @@ public interface UserApi {
 
     @Operation(summary = "Create user", description = "Create new user", tags = "user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Successful"),
+            @ApiResponse(responseCode = "200", description = "Successful", content = @Content(schema = @Schema(implementation = IdResponse.class))),
             @ApiResponse(responseCode = "400", description = "Bad request")
     })
     @PostMapping(consumes = "application/json")
