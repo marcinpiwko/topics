@@ -1,4 +1,4 @@
-package com.siwz.app.services;
+package com.siwz.app.services.implementation;
 
 import com.siwz.app.persistence.dto.Subject;
 import com.siwz.app.persistence.dto.Topic;

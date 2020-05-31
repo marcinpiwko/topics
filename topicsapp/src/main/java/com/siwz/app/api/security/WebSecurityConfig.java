@@ -1,6 +1,6 @@
 package com.siwz.app.api.security;
 
-import com.siwz.app.services.UserManager;
+import com.siwz.app.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    private final UserManager jwtUserDetailsManager;
+    private final UserService userService;
 
     private final JwtRequestFilter jwtRequestFilter;
 
@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(jwtUserDetailsManager).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
     @Bean

@@ -6,7 +6,7 @@ import com.siwz.app.api.forms.login.LoginRequest;
 import com.siwz.app.api.forms.login.LoginResponse;
 import com.siwz.app.api.interfaces.AuthApi;
 import com.siwz.app.api.security.JwtToken;
-import com.siwz.app.services.UserManager;
+import com.siwz.app.services.interfaces.UserService;
 import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class AuthApiController implements AuthApi {
 
     private final JwtToken jwtToken;
 
-    private final UserManager jwtUserDetailsManager;
+    private final UserService userService;
 
     @Override
     public ResponseEntity<? extends ResponseForm> login(LoginRequest loginRequest) {
@@ -34,7 +34,7 @@ public class AuthApiController implements AuthApi {
         } catch (ApplicationException e) {
             return ApiResponse.badRequest(e.getMessage());
         }
-        final UserDetails userDetails = jwtUserDetailsManager.loadUserByUsername(loginRequest.getEmail());
+        final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getEmail());
         return ApiResponse.ok(new LoginResponse(jwtToken.generateToken(userDetails)));
     }
 

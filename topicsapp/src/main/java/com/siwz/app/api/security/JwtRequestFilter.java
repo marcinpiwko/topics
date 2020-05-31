@@ -1,6 +1,6 @@
 package com.siwz.app.api.security;
 
-import com.siwz.app.services.UserManager;
+import com.siwz.app.services.interfaces.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private final UserManager jwtUserDetailsManager;
+    private final UserService userService;
 
     private final JwtToken jwtTokenUtil;
 
@@ -33,7 +33,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
-                username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+                username = this.jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
                 throw new ServletException("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
@@ -43,8 +43,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             logger.warn("JWT Token does not begin with Bearer String");
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.jwtUserDetailsManager.loadUserByUsername(username);
-            if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
+            UserDetails userDetails = this.userService.loadUserByUsername(username);
+            if (this.jwtTokenUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken
