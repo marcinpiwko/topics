@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 public class ErrorResponse implements ResponseForm {
 
     @Schema(description = "HTTP status error code",
-            example = "404")
+            example = "404 NOT_FOUND")
     private String errorCode;
 
     @Schema(description = "Error description and details",
-            example = "Entity with given id does not exist")
+            example = "Not found entity with given id")
     private String errorDescription;
 }

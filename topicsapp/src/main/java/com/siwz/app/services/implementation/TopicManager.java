@@ -3,7 +3,6 @@ package com.siwz.app.services.implementation;
 import com.siwz.app.persistence.dto.Subject;
 import com.siwz.app.persistence.dto.Topic;
 import com.siwz.app.persistence.repositories.TopicRepository;
-import com.siwz.app.services.interfaces.SubjectService;
 import com.siwz.app.services.interfaces.TopicService;
 import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
@@ -18,8 +17,6 @@ import java.util.Optional;
 public class TopicManager implements TopicService {
 
     private final TopicRepository topicRepository;
-
-    private final SubjectService subjectService;
 
     @Override
     public Long createTopic(Topic topic) throws ApplicationException {
@@ -60,9 +57,6 @@ public class TopicManager implements TopicService {
 
     @Override // get user associated topic for specific subject
     public Topic getTopicByUserAndSubject(Long userId, Long subjectId) throws ApplicationException {
-        if(!subjectService.checkIfSubjectExists(subjectId)) {
-            throw new ApplicationException(DAOError.DAO_SUBJECT_NOT_FOUND, subjectId);
-        }
         return topicRepository.findByUserAndSubject(userId, subjectId)
                 .orElseThrow(() -> new ApplicationException(DAOError.DAO_NOT_ASSIGNED_TOPIC, userId, subjectId));
     }

@@ -1,6 +1,5 @@
 package com.siwz.app.services.interfaces;
 
-import com.siwz.app.persistence.dto.Role;
 import com.siwz.app.persistence.dto.Topic;
 import com.siwz.app.persistence.dto.User;
 import com.siwz.app.utils.errors.ApplicationException;
@@ -16,7 +15,7 @@ public interface UserService extends UserDetailsService {
 
     void deleteUser(Long userId) throws ApplicationException;
 
-    List<User> getUsersByRole(Role.RoleType role) throws ApplicationException;
+    List<User> getUsersByRole(String role) throws ApplicationException;
 
     User getUserById(Long userId) throws ApplicationException;
 

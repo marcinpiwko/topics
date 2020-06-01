@@ -5,6 +5,7 @@ import com.siwz.app.persistence.dto.Topic;
 import com.siwz.app.persistence.dto.User;
 import com.siwz.app.persistence.repositories.UserRepository;
 import com.siwz.app.services.interfaces.RoleService;
+import com.siwz.app.services.interfaces.SubjectService;
 import com.siwz.app.services.interfaces.TopicService;
 import com.siwz.app.services.interfaces.UserService;
 import com.siwz.app.utils.errors.ApplicationException;
@@ -29,7 +30,9 @@ public class UserManager implements UserService {
 
     private final TopicService topicService;
 
-    @Override // TAG USERS
+    private final SubjectService subjectService;
+
+    @Override
     public Long createUser(User user) throws ApplicationException {
         if(userRepository.existsByEmail(user.getEmail())) {
             throw new ApplicationException(DAOError.DAO_USER_ALREADY_EXISTS, user.getEmail());
@@ -39,8 +42,8 @@ public class UserManager implements UserService {
         return user.getId();
     }
 
-    @Override // TAG USERS
-    public void updateUser(Long userId, User newUser) throws ApplicationException { // TODO api endpoint PATCH /users/{id}
+    @Override
+    public void updateUser(Long userId, User newUser) throws ApplicationException {
         Optional<User> originalUser = userRepository.findById(userId);
         if(!originalUser.isPresent()) {
             throw new ApplicationException(DAOError.DAO_USER_NOT_FOUND, userId);
@@ -48,38 +51,45 @@ public class UserManager implements UserService {
         updateUserData(originalUser.get(), newUser);
     }
 
-    @Override // TAG USERS
-    public void deleteUser(Long userId) throws ApplicationException { // TODO api endpoint DELETE /users/{id}
+    @Override
+    public void deleteUser(Long userId) throws ApplicationException {
         if(!userRepository.existsById(userId)) {
             throw new ApplicationException(DAOError.DAO_USER_NOT_FOUND, userId);
         }
         userRepository.deleteById(userId);
     }
 
-    @Override // TAG USERS
-    public List<User> getUsersByRole(Role.RoleType roleType) throws ApplicationException { // TODO api endpoint GET /users with required query param role=type
-        if(!roleService.checkIfRoleExists(roleType)) {
+    @Override
+    public List<User> getUsersByRole(String roleType) throws ApplicationException {
+        try {
+            if(!roleService.checkIfRoleExists(Role.RoleType.valueOf(roleType))) {
+                throw new IllegalArgumentException();
+            }
+            return userRepository.findByRole(roleService.getRoleByType(Role.RoleType.valueOf(roleType)));
+        } catch(IllegalArgumentException e) {
             throw new ApplicationException(DAOError.DAO_ROLE_NOT_FOUND, roleType);
         }
-        return userRepository.findByRole(roleService.getRoleByType(roleType));
     }
 
-    @Override // TAG USERS
-    public User getUserById(Long userId) throws ApplicationException { // TODO api endpoint GET /users/{id}
+    @Override
+    public User getUserById(Long userId) throws ApplicationException {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new ApplicationException(DAOError.DAO_USER_NOT_FOUND, userId));
     }
 
-    @Override // TAG USER-TOPICS
-    public Topic getUserAssignedTopicBySubject(Long userId, Long subjectId) throws ApplicationException { // TODO api endpoint GET /users/{id}/subjects/{id}/topic
+    @Override
+    public Topic getUserAssignedTopicBySubject(Long userId, Long subjectId) throws ApplicationException {
         if(!userRepository.existsById(userId)) {
             throw new ApplicationException(DAOError.DAO_USER_NOT_FOUND, userId);
+        }
+        if(!subjectService.checkIfSubjectExists(subjectId)) {
+            throw new ApplicationException(DAOError.DAO_SUBJECT_NOT_FOUND, subjectId);
         }
         return topicService.getTopicByUserAndSubject(userId, subjectId);
     }
 
-    @Override // TAG USER-TOPICS
-    public List<Topic> getAllUserAssignedTopics(Long userId) throws ApplicationException { // TODO api endpoint GET /users/{id}/topics
+    @Override
+    public List<Topic> getAllUserAssignedTopics(Long userId) throws ApplicationException {
         if(!userRepository.existsById(userId)) {
             throw new ApplicationException(DAOError.DAO_USER_NOT_FOUND, userId);
         }

@@ -13,7 +13,9 @@ public enum DAOError implements ApplicationError {
     DAO_TOPIC_NOT_FOUND("Topic {0} not found"),
     DAO_ROLE_NOT_FOUND("Role {0} not found"),
 
-    DAO_NOT_ASSIGNED_TOPIC("No assigned topic to user {0} from subject {1}")
+    DAO_NOT_ASSIGNED_TOPIC("No assigned topic to user {0} from subject {1}"),
+    DAO_USER_SUBJECT_TOPIC_EXISTS("User {0} has already assigned topic from subject {1}"),
+    DAO_TOPIC_REACHED_LIMIT("Topic {0} has reached limit of students")
     ;
 
     String message;

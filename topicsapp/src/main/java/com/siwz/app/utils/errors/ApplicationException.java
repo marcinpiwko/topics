@@ -4,6 +4,8 @@ import com.siwz.app.utils.StringUtil;
 
 public class ApplicationException extends Exception {
 
+    private static final long serialVersionUID = 4390059691291269573L;
+
     private ApplicationError errorCode;
 
     private String message;

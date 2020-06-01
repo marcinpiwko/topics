@@ -1,9 +1,10 @@
 package com.siwz.app.api.interfaces;
 
 import com.siwz.app.api.forms.ErrorResponse;
+import com.siwz.app.api.forms.IdResponse;
 import com.siwz.app.api.forms.ResponseForm;
-import com.siwz.app.api.forms.login.LoginRequest;
-import com.siwz.app.api.forms.login.LoginResponse;
+import com.siwz.app.api.forms.subject.SubjectCreateRequest;
+import com.siwz.app.api.forms.user.UserCreateRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@RequestMapping(value = "/login")
-@Tag(name = "authorization", description = "The authorization API")
-public interface AuthApi {
+@RequestMapping(value = "/subjects")
+@Tag(name = "subjects", description = "The subject API")
+public interface SubjectApi {
 
-    @Operation(summary = "Login", description = "User login", tags = "authorization")
+    @Operation(summary = "Create subject", description = "Create new subject", tags = "subjects")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successful", content = @Content(schema = @Schema(implementation = LoginResponse.class))),
+            @ApiResponse(responseCode = "200", description = "Successful", content = @Content(schema = @Schema(implementation = IdResponse.class))),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
-    @PostMapping(consumes = "application/json")
-    ResponseEntity<? extends ResponseForm> login(@Valid @RequestBody LoginRequest loginRequest);
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    ResponseEntity<? extends ResponseForm> createSubject(@Valid @RequestBody SubjectCreateRequest subjectCreateRequest);
 }

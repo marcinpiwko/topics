@@ -1,6 +1,8 @@
 package com.siwz.app.api;
 
 import com.siwz.app.api.security.JwtAuthenticationEntryPoint;
+import com.siwz.app.api.translators.SubjectTranslator;
+import com.siwz.app.api.translators.TopicTranslator;
 import com.siwz.app.api.translators.UserTranslator;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -17,6 +19,16 @@ public class TopicsApiConfiguration {
     @Bean
     public UserTranslator userTranslator() {
         return new UserTranslator(passwordEncoder());
+    }
+
+    @Bean
+    public SubjectTranslator subjectTranslator() {
+        return new SubjectTranslator();
+    }
+
+    @Bean
+    public TopicTranslator topicTranslator() {
+        return new TopicTranslator();
     }
 
     @Bean
