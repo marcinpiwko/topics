@@ -1,6 +1,6 @@
 INSERT INTO ROLES VALUES(1, 'STUDENT');
 INSERT INTO ROLES VALUES(2, 'TEACHER');
 
-INSERT INTO USERS VALUES(nextval('HIBERNATE_SEQUENCE'), 'admin', '$2a$10$sR3GmenRyImnt7oAMUn6UOsTLtgs7Nbp2QRGkQ6tPOsnG2KupQEey', 'admin', 'admin', 2, null, now());
+INSERT INTO USERS VALUES(nextval('USER_SEQ'), 'admin', '$2a$10$sR3GmenRyImnt7oAMUn6UOsTLtgs7Nbp2QRGkQ6tPOsnG2KupQEey', 'admin', 'admin', 2, null, now());
 
 COMMIT;

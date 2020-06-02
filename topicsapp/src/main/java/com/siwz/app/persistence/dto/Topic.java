@@ -12,7 +12,7 @@ public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "TOPIC_ID_GENERATOR")
-    @SequenceGenerator(name = "TOPIC_ID_GENERATOR", sequenceName = "HIBERNATE_SEQUENCE")
+    @SequenceGenerator(name = "TOPIC_ID_GENERATOR", sequenceName = "TOPIC_SEQ")
     @Column(name = "TOP_ID")
     private Long id;
 
