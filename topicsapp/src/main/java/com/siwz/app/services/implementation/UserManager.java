@@ -37,6 +37,9 @@ public class UserManager implements UserService {
         if(userRepository.existsByEmail(user.getEmail())) {
             throw new ApplicationException(DAOError.DAO_USER_ALREADY_EXISTS, user.getEmail());
         }
+        if(userRepository.existsByIndexNo(user.getIndexNo())) {
+            throw new ApplicationException(DAOError.DAO_USER_ALREADY_EXISTS, user.getIndexNo());
+        }
         user.setRole(roleService.getRoleByType(Role.RoleType.STUDENT));
         userRepository.save(user);
         return user.getId();

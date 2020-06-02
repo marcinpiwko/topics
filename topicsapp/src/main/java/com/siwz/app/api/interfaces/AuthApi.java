@@ -24,7 +24,7 @@ public interface AuthApi {
     @Operation(summary = "Login", description = "User login", tags = "authorization")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful", content = @Content(schema = @Schema(implementation = LoginResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PostMapping(consumes = "application/json")
     ResponseEntity<? extends ResponseForm> login(@Valid @RequestBody LoginRequest loginRequest);

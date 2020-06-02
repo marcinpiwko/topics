@@ -11,7 +11,8 @@ import java.util.Date;
 public class Topic {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "TOPIC_ID_GENERATOR")
+    @SequenceGenerator(name = "TOPIC_ID_GENERATOR", sequenceName = "HIBERNATE_SEQUENCE")
     @Column(name = "TOP_ID")
     private Long id;
 

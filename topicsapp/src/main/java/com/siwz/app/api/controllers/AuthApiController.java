@@ -15,10 +15,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class AuthApiController implements AuthApi {
 
     private final AuthenticationManager authenticationManager;
@@ -32,7 +34,7 @@ public class AuthApiController implements AuthApi {
         try {
             authenticate(loginRequest.getEmail(), loginRequest.getPassword());
         } catch (ApplicationException e) {
-            return ApiResponse.badRequest(e.getMessage());
+            return ApiResponse.unauthorized(e.getMessage());
         }
         final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getEmail());
         return ApiResponse.ok(new LoginResponse(jwtToken.generateToken(userDetails)));

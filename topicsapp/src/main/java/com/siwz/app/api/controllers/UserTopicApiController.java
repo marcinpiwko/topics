@@ -58,9 +58,19 @@ public class UserTopicApiController implements UserTopicApi {
         try {
             return ApiResponse.ok(new IdResponse(topicReservationService.reserveTopic(userId, subjectId, topicId)));
         } catch(ApplicationException e) {
-            if(DAOError.DAO_USER_SUBJECT_TOPIC_EXISTS.equals(e.getErrorCode())) {
+            if(DAOError.DAO_USER_SUBJECT_TOPIC_EXISTS.equals(e.getErrorCode()) || DAOError.DAO_TOPIC_REACHED_LIMIT.equals(e.getErrorCode())) {
                 return ApiResponse.badRequest(e.getMessage());
             }
+            return ApiResponse.notFound(e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<? extends ResponseForm> deleteTopicReservation(Long userId, Long subjectId, Long topicId) {
+        try {
+            topicReservationService.deleteTopicReservation(userId, subjectId, topicId);
+            return ApiResponse.noContent();
+        } catch(ApplicationException e) {
             return ApiResponse.notFound(e.getMessage());
         }
     }

@@ -3,8 +3,6 @@ package com.siwz.app.api.interfaces;
 import com.siwz.app.api.forms.ErrorResponse;
 import com.siwz.app.api.forms.IdResponse;
 import com.siwz.app.api.forms.ResponseForm;
-import com.siwz.app.api.forms.topic.TopicGetResponse;
-import com.siwz.app.api.forms.topic.TopicsGetResponse;
 import com.siwz.app.api.forms.user.UserCreateRequest;
 import com.siwz.app.api.forms.user.UserGetResponse;
 import com.siwz.app.api.forms.user.UserUpdateRequest;

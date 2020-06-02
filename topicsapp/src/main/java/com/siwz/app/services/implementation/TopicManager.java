@@ -3,6 +3,7 @@ package com.siwz.app.services.implementation;
 import com.siwz.app.persistence.dto.Subject;
 import com.siwz.app.persistence.dto.Topic;
 import com.siwz.app.persistence.repositories.TopicRepository;
+import com.siwz.app.persistence.repositories.TopicReservationRepository;
 import com.siwz.app.services.interfaces.TopicService;
 import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
@@ -17,6 +18,8 @@ import java.util.Optional;
 public class TopicManager implements TopicService {
 
     private final TopicRepository topicRepository;
+
+    private final TopicReservationRepository topicReservationRepository;
 
     @Override
     public Long createTopic(Topic topic) throws ApplicationException {
@@ -41,27 +44,30 @@ public class TopicManager implements TopicService {
         if(!topicRepository.existsByIdAndSubject(topicId, subject)) {
             throw new ApplicationException(DAOError.DAO_TOPIC_NOT_FOUND, topicId);
         }
+        if(topicReservationRepository.countByTopic(topicRepository.findById(topicId).get()) != 0) {
+            throw new ApplicationException(DAOError.DAO_TOPIC_ACTIVE_RESERVATIONS, topicId);
+        }
         topicRepository.deleteByIdAndSubject(topicId, subject);
     }
 
-    @Override // get all topics for specific subject
+    @Override
     public List<Topic> getTopics(Subject subject) {
         return topicRepository.findAllBySubject(subject);
     }
 
-    @Override // get specific topic for specific subject
+    @Override
     public Topic getTopicById(Long topicId, Subject subject) throws ApplicationException {
         return topicRepository.findByIdAndSubject(topicId, subject)
                 .orElseThrow(() -> new ApplicationException(DAOError.DAO_TOPIC_NOT_FOUND, topicId));
     }
 
-    @Override // get user associated topic for specific subject
+    @Override
     public Topic getTopicByUserAndSubject(Long userId, Long subjectId) throws ApplicationException {
         return topicRepository.findByUserAndSubject(userId, subjectId)
                 .orElseThrow(() -> new ApplicationException(DAOError.DAO_NOT_ASSIGNED_TOPIC, userId, subjectId));
     }
 
-    @Override // get all user associated topic
+    @Override
     public List<Topic> getTopicsByUser(Long userId) {
         return topicRepository.findByUser(userId);
     }

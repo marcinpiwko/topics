@@ -15,13 +15,13 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     List<Topic> findAllBySubject(Subject subject);
 
-    @Query(value = "SELECT t FROM TOPICS t " +
+    @Query(value = "SELECT * FROM TOPICS t " +
             "WHERE t.top_id = " +
             "(SELECT r.trs_top_id FROM TOPIC_RESERVATIONS r " +
             "WHERE r.trs_usr_id = ?1) AND t.top_sub_id = ?2", nativeQuery = true)
     Optional<Topic> findByUserAndSubject(Long userId, Long subjectId);
 
-    @Query(value = "SELECT t FROM TOPICS t " +
+    @Query(value = "SELECT * FROM TOPICS t " +
             "WHERE t.top_id = " +
             "(SELECT r.trs_top_id FROM TOPIC_RESERVATIONS r " +
             "WHERE r.trs_usr_id = ?1)", nativeQuery = true)

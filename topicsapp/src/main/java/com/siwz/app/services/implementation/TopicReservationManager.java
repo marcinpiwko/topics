@@ -30,27 +30,31 @@ public class TopicReservationManager implements TopicReservationService {
     public Long reserveTopic(Long userId, Long subjectId, Long topicId) throws ApplicationException {
         Topic topic = topicService.getTopicById(topicId, subjectService.getSubjectById(subjectId));
         User user = userService.getUserById(userId);
-        validate(topic, user, subjectId);
+        if(!validate(topic, user, subjectId)) {
+            throw new ApplicationException(DAOError.DAO_USER_SUBJECT_TOPIC_EXISTS, user.getId(), subjectId);
+        }
         return executeReservation(topic, user);
     }
 
     @Override
-    public void deleteTopicReservation(Long id) throws ApplicationException {
-        if(!topicReservationRepository.existsById(id)) {
-            throw new ApplicationException(DAOError.DAO_TOPIC_NOT_FOUND, id);
+    public void deleteTopicReservation(Long userId, Long subjectId, Long topicId) throws ApplicationException {
+        Topic topic = topicService.getTopicById(topicId, subjectService.getSubjectById(subjectId));
+        User user = userService.getUserById(userId);
+        if(!topicReservationRepository.existsByTopicAndUser(topic, user)) {
+            throw new ApplicationException(DAOError.DAO_TOPIC_RESERVATION_NOT_FOUND, topicId, userId);
         }
-        topicReservationRepository.deleteById(id);
+        topicReservationRepository.deleteByTopicAndUser(topic, user);
     }
 
-    private void validate(Topic topic, User user, Long subjectId) throws ApplicationException {
+    private Boolean validate(Topic topic, User user, Long subjectId) throws ApplicationException {
         if((topic.getLimit() - topicReservationRepository.countByTopic(topic)) == 0) {
             throw new ApplicationException(DAOError.DAO_TOPIC_REACHED_LIMIT, topic.getId());
         }
         try {
             topicService.getTopicByUserAndSubject(user.getId(), subjectId);
-            throw new ApplicationException(DAOError.DAO_USER_SUBJECT_TOPIC_EXISTS, user.getId(), subjectId);
+            return false;
         } catch(ApplicationException e) {
-
+            return true;
         }
     }
 

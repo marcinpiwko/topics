@@ -12,7 +12,8 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "USER_ID_GENERATOR")
+    @SequenceGenerator(name = "USER_ID_GENERATOR", sequenceName = "HIBERNATE_SEQUENCE")
     @Column(name = "USR_ID")
     private Long id;
 

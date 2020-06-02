@@ -35,6 +35,7 @@ public class UserTranslator {
 
     public UserGetResponse translateToUserGetResponse(User user) {
         UserGetResponse userGetResponse = new UserGetResponse();
+        userGetResponse.setId(user.getId());
         userGetResponse.setEmail(user.getEmail());
         userGetResponse.setFirstName(user.getFirstName());
         userGetResponse.setLastName(user.getLastName());

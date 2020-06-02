@@ -23,7 +23,7 @@ public class TopicsApiConfiguration {
 
     @Bean
     public SubjectTranslator subjectTranslator() {
-        return new SubjectTranslator();
+        return new SubjectTranslator(userTranslator());
     }
 
     @Bean

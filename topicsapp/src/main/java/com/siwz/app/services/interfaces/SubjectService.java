@@ -18,7 +18,7 @@ public interface SubjectService {
 
     Long createSubject(Subject subject) throws ApplicationException;
 
-    void deleteSubject(Long subjectId);
+    void deleteSubject(Long subjectId) throws ApplicationException;
 
     void updateSubject(Long subjectId, Subject newSubject) throws ApplicationException;
 

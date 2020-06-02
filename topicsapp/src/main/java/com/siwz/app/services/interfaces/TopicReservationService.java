@@ -6,5 +6,5 @@ public interface TopicReservationService {
 
     Long reserveTopic(Long userId, Long subjectId, Long topicId) throws ApplicationException;
 
-    void deleteTopicReservation(Long id) throws ApplicationException;
+    void deleteTopicReservation(Long userId, Long subjectId, Long topicId) throws ApplicationException;
 }

@@ -10,6 +10,12 @@ import javax.validation.constraints.NotNull;
 @Data
 public class UserGetResponse implements ResponseForm {
 
+    @Schema(description = "User unique Id",
+            example = "1")
+    @JsonProperty
+    @NotNull
+    private Long id;
+
     @Schema(description = "Login (email)",
             example = "marcinpiwko97@gmail.com")
     @JsonProperty

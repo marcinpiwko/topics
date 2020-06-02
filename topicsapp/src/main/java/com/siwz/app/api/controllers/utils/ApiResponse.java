@@ -26,4 +26,8 @@ public class ApiResponse {
     public static ResponseEntity<? extends ResponseForm> ok(ResponseForm form) {
         return new ResponseEntity<>(form, HttpStatus.OK);
     }
+
+    public static ResponseEntity<? extends ResponseForm> unauthorized(String message) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED.toString(), message), HttpStatus.UNAUTHORIZED);
+    }
 }

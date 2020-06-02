@@ -12,10 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/users")
 @Tag(name = "user-topics", description = "The user-topics API")
@@ -44,4 +41,12 @@ public interface UserTopicApi {
     })
     @PostMapping(value = "/{userId}/subjects/{subjectId}/topics/{topicId}", produces = "application/json")
     ResponseEntity<? extends ResponseForm> reserveTopic(@PathVariable("userId") Long userId, @PathVariable("subjectId") Long subjectId, @PathVariable("topicId") Long topicId);
+
+    @Operation(summary = "Delete topic reservation", description = "Delete topic reservation", tags = "user-topics")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Successful"),
+            @ApiResponse(responseCode = "404", description = "Subject or topic not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    })
+    @DeleteMapping(value = "/{userId}/subjects/{subjectId}/topics/{topicId}")
+    ResponseEntity<? extends ResponseForm> deleteTopicReservation(@PathVariable("userId") Long userId, @PathVariable("subjectId") Long subjectId, @PathVariable("topicId") Long topicId);
 }
