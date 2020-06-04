@@ -3,10 +3,10 @@ package com.siwz.app.api.interfaces;
 import com.siwz.app.api.forms.ErrorResponse;
 import com.siwz.app.api.forms.IdResponse;
 import com.siwz.app.api.forms.ResponseForm;
-import com.siwz.app.api.forms.subject.SubjectsGetResponse;
 import com.siwz.app.api.forms.topic.TopicCreateRequest;
 import com.siwz.app.api.forms.topic.TopicGetResponse;
 import com.siwz.app.api.forms.topic.TopicUpdateRequest;
+import com.siwz.app.api.forms.topic.TopicsGetResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -56,7 +56,7 @@ public interface SubjectTopicApi {
 
     @Operation(summary = "Get subject topics", description = "Get list of subject topics", tags = "subject-topics")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successful", content = @Content(schema = @Schema(implementation = TopicGetResponse.class)))
+            @ApiResponse(responseCode = "200", description = "Successful", content = @Content(schema = @Schema(implementation = TopicsGetResponse.class)))
     })
     @GetMapping(value = "/{subjectId}/topics", produces = "application/json")
     ResponseEntity<? extends ResponseForm> getSubjectTopics(@PathVariable("subjectId") Long subjectId);

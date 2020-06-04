@@ -15,6 +15,6 @@ public class ErrorResponse implements ResponseForm {
     private String errorCode;
 
     @Schema(description = "Error description and details",
-            example = "Not found entity with given id")
+            example = "Entity id not found")
     private String errorDescription;
 }
