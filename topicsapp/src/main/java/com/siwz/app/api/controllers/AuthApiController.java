@@ -6,6 +6,7 @@ import com.siwz.app.api.forms.login.LoginRequest;
 import com.siwz.app.api.forms.login.LoginResponse;
 import com.siwz.app.api.interfaces.AuthApi;
 import com.siwz.app.api.security.JwtToken;
+import com.siwz.app.persistence.dto.User;
 import com.siwz.app.services.interfaces.UserService;
 import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
@@ -14,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,8 +36,8 @@ public class AuthApiController implements AuthApi {
         } catch (ApplicationException e) {
             return ApiResponse.unauthorized(e.getMessage());
         }
-        final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getEmail());
-        return ApiResponse.ok(new LoginResponse(jwtToken.generateToken(userDetails)));
+        User userDetails = (User) userService.loadUserByUsername(loginRequest.getEmail());
+        return ApiResponse.ok(new LoginResponse(userDetails.getId(), jwtToken.generateToken(userDetails)));
     }
 
     private void authenticate(String username, String password) throws ApplicationException {

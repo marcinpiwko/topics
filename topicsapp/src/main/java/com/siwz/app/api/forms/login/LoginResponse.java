@@ -10,12 +10,18 @@ import javax.validation.constraints.NotNull;
 @Data
 public class LoginResponse implements ResponseForm {
 
+    @Schema(description = "User id")
+    @JsonProperty
+    @NotNull
+    private Long userId;
+
     @Schema(description = "JSON Web Token")
     @JsonProperty
     @NotNull
     private String token;
 
-    public LoginResponse(String token) {
+    public LoginResponse(Long userId, String token) {
+        this.userId = userId;
         this.token = token;
     }
 }
