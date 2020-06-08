@@ -18,7 +18,7 @@ public class TopicsApiConfiguration {
 
     @Bean
     public UserTranslator userTranslator() {
-        return new UserTranslator(passwordEncoder());
+        return new UserTranslator();
     }
 
     @Bean
