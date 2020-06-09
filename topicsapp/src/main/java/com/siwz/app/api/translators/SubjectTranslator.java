@@ -3,7 +3,7 @@ package com.siwz.app.api.translators;
 import com.siwz.app.api.forms.subject.SubjectCreateRequest;
 import com.siwz.app.api.forms.subject.SubjectGetResponse;
 import com.siwz.app.api.forms.subject.SubjectUpdateRequest;
-import com.siwz.app.persistence.dto.Subject;
+import com.siwz.app.persistence.model.Subject;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

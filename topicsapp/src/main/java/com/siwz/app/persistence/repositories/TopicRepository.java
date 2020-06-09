@@ -1,7 +1,7 @@
 package com.siwz.app.persistence.repositories;
 
-import com.siwz.app.persistence.dto.Subject;
-import com.siwz.app.persistence.dto.Topic;
+import com.siwz.app.persistence.model.Subject;
+import com.siwz.app.persistence.model.Topic;
 import com.siwz.app.utils.errors.ApplicationException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

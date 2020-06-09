@@ -1,15 +1,14 @@
 package com.siwz.app.api.controllers;
 
 import com.siwz.app.api.controllers.utils.ApiResponse;
-import com.siwz.app.api.forms.IdResponse;
+import com.siwz.app.api.forms.common.IdResponse;
 import com.siwz.app.api.forms.ResponseForm;
 import com.siwz.app.api.forms.subject.SubjectCreateRequest;
 import com.siwz.app.api.forms.subject.SubjectUpdateRequest;
 import com.siwz.app.api.forms.subject.SubjectsGetResponse;
-import com.siwz.app.api.forms.user.UsersByRoleGetResponse;
 import com.siwz.app.api.interfaces.SubjectApi;
 import com.siwz.app.api.translators.SubjectTranslator;
-import com.siwz.app.persistence.dto.Subject;
+import com.siwz.app.persistence.model.Subject;
 import com.siwz.app.services.interfaces.SubjectService;
 import com.siwz.app.services.interfaces.UserService;
 import com.siwz.app.utils.errors.ApplicationException;

@@ -1,7 +1,7 @@
 package com.siwz.app.services.implementation;
 
-import com.siwz.app.persistence.dto.Subject;
-import com.siwz.app.persistence.dto.Topic;
+import com.siwz.app.persistence.model.Subject;
+import com.siwz.app.persistence.model.Topic;
 import com.siwz.app.persistence.repositories.TopicRepository;
 import com.siwz.app.persistence.repositories.TopicReservationRepository;
 import com.siwz.app.services.interfaces.TopicService;

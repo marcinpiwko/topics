@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UsersByRoleGetResponse implements ResponseForm {
 
-    @Schema(description = "List of students/teachers")
+    @Schema(description = "List of all students/teachers")
     @JsonProperty
     private List<UserGetResponse> users;
 }

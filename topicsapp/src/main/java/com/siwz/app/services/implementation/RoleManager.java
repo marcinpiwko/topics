@@ -1,6 +1,6 @@
 package com.siwz.app.services.implementation;
 
-import com.siwz.app.persistence.dto.Role;
+import com.siwz.app.persistence.model.Role;
 import com.siwz.app.persistence.repositories.RoleRepository;
 import com.siwz.app.services.interfaces.RoleService;
 import com.siwz.app.utils.errors.ApplicationException;

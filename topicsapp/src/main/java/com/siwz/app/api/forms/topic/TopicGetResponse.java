@@ -25,7 +25,7 @@ public class TopicGetResponse implements ResponseForm {
     private String name;
 
     @Schema(description = "Topic description",
-            example = "Pełen opis funkcjonalności")
+            example = "Pełen opis wymagań")
     @JsonProperty
     @NotNull
     private String description;

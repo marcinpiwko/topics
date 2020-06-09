@@ -8,12 +8,12 @@ import lombok.Data;
 public class SubjectUpdateRequest {
 
     @Schema(description = "Subject name",
-            example = "Systemy operacyjne")
+            example = "Systemy informatyczne w zarządzaniu")
     @JsonProperty
     private String name;
 
-    @Schema(description = "User password",
-            example = "Na tym przedmiocie na pewno uwalisz")
+    @Schema(description = "Subject description",
+            example = "Szczegółowy program nauczania")
     @JsonProperty
     private String description;
 

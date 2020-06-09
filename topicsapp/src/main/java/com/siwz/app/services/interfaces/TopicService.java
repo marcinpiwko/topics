@@ -1,7 +1,7 @@
 package com.siwz.app.services.interfaces;
 
-import com.siwz.app.persistence.dto.Subject;
-import com.siwz.app.persistence.dto.Topic;
+import com.siwz.app.persistence.model.Subject;
+import com.siwz.app.persistence.model.Topic;
 import com.siwz.app.utils.errors.ApplicationException;
 
 import java.util.List;

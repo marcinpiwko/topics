@@ -1,8 +1,8 @@
 package com.siwz.app.persistence.repositories;
 
-import com.siwz.app.persistence.dto.Topic;
-import com.siwz.app.persistence.dto.TopicReservation;
-import com.siwz.app.persistence.dto.User;
+import com.siwz.app.persistence.model.Topic;
+import com.siwz.app.persistence.model.TopicReservation;
+import com.siwz.app.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

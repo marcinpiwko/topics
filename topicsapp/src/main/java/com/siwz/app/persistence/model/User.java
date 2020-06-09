@@ -1,4 +1,4 @@
-package com.siwz.app.persistence.dto;
+package com.siwz.app.persistence.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,7 +1,7 @@
 package com.siwz.app.api.interfaces;
 
-import com.siwz.app.api.forms.ErrorResponse;
-import com.siwz.app.api.forms.IdResponse;
+import com.siwz.app.api.forms.common.ErrorResponse;
+import com.siwz.app.api.forms.common.IdResponse;
 import com.siwz.app.api.forms.ResponseForm;
 import com.siwz.app.api.forms.topic.TopicCreateRequest;
 import com.siwz.app.api.forms.topic.TopicGetResponse;

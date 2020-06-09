@@ -1,6 +1,6 @@
 package com.siwz.app.api.controllers.utils;
 
-import com.siwz.app.api.forms.ErrorResponse;
+import com.siwz.app.api.forms.common.ErrorResponse;
 import com.siwz.app.api.forms.ResponseForm;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

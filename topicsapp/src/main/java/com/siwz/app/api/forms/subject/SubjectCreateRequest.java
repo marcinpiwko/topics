@@ -10,13 +10,13 @@ import javax.validation.constraints.NotNull;
 public class SubjectCreateRequest {
 
     @Schema(description = "Subject name",
-            example = "Systemy operacyjne")
+            example = "Systemy informatyczne w zarządzaniu")
     @JsonProperty
     @NotNull
     private String name;
 
-    @Schema(description = "User password",
-            example = "Na tym przedmiocie na pewno uwalisz")
+    @Schema(description = "Subject description",
+            example = "Szczegółowy program nauczania")
     @JsonProperty
     @NotNull
     private String description;
@@ -27,7 +27,7 @@ public class SubjectCreateRequest {
     @NotNull
     private Long userId;
 
-    @Schema(description = "Number of ects points",
+    @Schema(description = "Number of subject ects points",
             example = "5")
     @JsonProperty
     @NotNull

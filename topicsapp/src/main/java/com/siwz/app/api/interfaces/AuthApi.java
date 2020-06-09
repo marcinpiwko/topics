@@ -1,6 +1,6 @@
 package com.siwz.app.api.interfaces;
 
-import com.siwz.app.api.forms.ErrorResponse;
+import com.siwz.app.api.forms.common.ErrorResponse;
 import com.siwz.app.api.forms.ResponseForm;
 import com.siwz.app.api.forms.login.LoginRequest;
 import com.siwz.app.api.forms.login.LoginResponse;

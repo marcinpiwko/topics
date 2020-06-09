@@ -1,7 +1,7 @@
 package com.siwz.app.services.interfaces;
 
-import com.siwz.app.persistence.dto.Topic;
-import com.siwz.app.persistence.dto.User;
+import com.siwz.app.persistence.model.Topic;
+import com.siwz.app.persistence.model.User;
 import com.siwz.app.utils.errors.ApplicationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

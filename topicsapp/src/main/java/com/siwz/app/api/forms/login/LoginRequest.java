@@ -15,7 +15,8 @@ public class LoginRequest {
     @NotNull
     private String email;
 
-    @Schema(description = "User password")
+    @Schema(description = "User password",
+            example = "string")
     @JsonProperty
     @NotNull
     private String password;

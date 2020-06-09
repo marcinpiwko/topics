@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TopicsGetResponse implements ResponseForm {
 
-    @Schema(description = "List of topics assigned to student")
+    @Schema(description = "List of topics from all subjects assigned to student")
     @JsonProperty
     private List<TopicGetResponse> topics;
 }

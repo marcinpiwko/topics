@@ -3,7 +3,7 @@ package com.siwz.app.api.translators;
 import com.siwz.app.api.forms.user.UserCreateRequest;
 import com.siwz.app.api.forms.user.UserGetResponse;
 import com.siwz.app.api.forms.user.UserUpdateRequest;
-import com.siwz.app.persistence.dto.User;
+import com.siwz.app.persistence.model.User;
 import com.siwz.app.utils.DateTimeUtil;
 import lombok.RequiredArgsConstructor;
 

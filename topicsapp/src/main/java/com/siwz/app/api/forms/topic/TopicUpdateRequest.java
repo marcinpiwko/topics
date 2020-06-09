@@ -15,7 +15,7 @@ public class TopicUpdateRequest {
     private String name;
 
     @Schema(description = "Topic description",
-            example = "Pełen opis funkcjonalności")
+            example = "Pełen opis wymagań")
     @JsonProperty
     private String description;
 

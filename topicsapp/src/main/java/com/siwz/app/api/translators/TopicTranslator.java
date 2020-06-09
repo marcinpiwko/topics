@@ -3,7 +3,7 @@ package com.siwz.app.api.translators;
 import com.siwz.app.api.forms.topic.TopicCreateRequest;
 import com.siwz.app.api.forms.topic.TopicGetResponse;
 import com.siwz.app.api.forms.topic.TopicUpdateRequest;
-import com.siwz.app.persistence.dto.Topic;
+import com.siwz.app.persistence.model.Topic;
 import com.siwz.app.utils.DateTimeUtil;
 
 public class TopicTranslator {

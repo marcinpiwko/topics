@@ -1,7 +1,7 @@
 package com.siwz.app.persistence.repositories;
 
-import com.siwz.app.persistence.dto.Role;
-import com.siwz.app.persistence.dto.User;
+import com.siwz.app.persistence.model.Role;
+import com.siwz.app.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

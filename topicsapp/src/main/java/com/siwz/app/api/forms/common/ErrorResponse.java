@@ -1,5 +1,6 @@
-package com.siwz.app.api.forms;
+package com.siwz.app.api.forms.common;
 
+import com.siwz.app.api.forms.ResponseForm;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;

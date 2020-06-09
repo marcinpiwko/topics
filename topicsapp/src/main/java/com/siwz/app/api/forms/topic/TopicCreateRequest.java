@@ -17,7 +17,7 @@ public class TopicCreateRequest {
     private String name;
 
     @Schema(description = "Topic description",
-            example = "Pełen opis funkcjonalności")
+            example = "Pełen opis wymagań")
     @JsonProperty
     @NotNull
     private String description;

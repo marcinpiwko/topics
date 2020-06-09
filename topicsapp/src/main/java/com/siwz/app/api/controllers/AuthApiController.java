@@ -6,7 +6,7 @@ import com.siwz.app.api.forms.login.LoginRequest;
 import com.siwz.app.api.forms.login.LoginResponse;
 import com.siwz.app.api.interfaces.AuthApi;
 import com.siwz.app.api.security.JwtToken;
-import com.siwz.app.persistence.dto.User;
+import com.siwz.app.persistence.model.User;
 import com.siwz.app.services.interfaces.UserService;
 import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;

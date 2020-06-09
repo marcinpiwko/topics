@@ -18,13 +18,13 @@ public class SubjectGetResponse implements ResponseForm {
     private Long id;
 
     @Schema(description = "Subject name",
-            example = "Systemy operacyjne")
+            example = "Systemy informatyczne w zarządzaniu")
     @JsonProperty
     @NotNull
     private String name;
 
     @Schema(description = "Subject description",
-            example = "Szczegółowy opis programu nauczania")
+            example = "Szczegółowy program nauczania")
     @JsonProperty
     @NotNull
     private String description;
@@ -34,7 +34,7 @@ public class SubjectGetResponse implements ResponseForm {
     @NotNull
     private UserGetResponse teacher;
 
-    @Schema(description = "Subject ects points",
+    @Schema(description = "Number of subject ects points",
             example = "5")
     @JsonProperty
     @NotNull
