@@ -23,7 +23,7 @@ public class Subject {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "USR_ID", name = "SUB_TEACHER_ID", nullable = false)
-    private User user;
+    private User teacher;
 
     @Column(name = "SUB_ECTS")
     private Integer ects;

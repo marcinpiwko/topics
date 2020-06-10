@@ -61,7 +61,7 @@ public class TopicReservationManager implements TopicReservationService {
     private Long executeReservation(Topic topic, User user) {
         TopicReservation topicReservation = new TopicReservation();
         topicReservation.setTopic(topic);
-        topicReservation.setUser(user);
+        topicReservation.setStudent(user);
         topicReservation.setReservationDate(DateTimeUtil.getCurrentDate());
         topicReservationRepository.save(topicReservation);
         return topicReservation.getId();

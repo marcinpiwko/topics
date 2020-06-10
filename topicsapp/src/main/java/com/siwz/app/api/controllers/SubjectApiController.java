@@ -15,6 +15,7 @@ import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -31,10 +32,11 @@ public class SubjectApiController implements SubjectApi {
     private final SubjectTranslator subjectTranslator;
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> createSubject(@Valid SubjectCreateRequest subjectCreateRequest) {
         try {
             Subject subject = subjectTranslator.translateToService(subjectCreateRequest);
-            subject.setUser(userService.getUserById(subjectCreateRequest.getUserId()));
+            subject.setTeacher(userService.getUserById(subjectCreateRequest.getUserId()));
             return ApiResponse.ok(new IdResponse(subjectService.createSubject(subject)));
         } catch (ApplicationException e) {
             if(DAOError.DAO_USER_NOT_FOUND.equals(e.getErrorCode())) {
@@ -45,6 +47,7 @@ public class SubjectApiController implements SubjectApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> updateSubject(Long id, @Valid SubjectUpdateRequest subjectUpdateRequest) {
         try {
             subjectService.updateSubject(id, subjectTranslator.translateToService(subjectUpdateRequest));
@@ -58,6 +61,7 @@ public class SubjectApiController implements SubjectApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> deleteSubject(Long id) {
         try {
             subjectService.deleteSubject(id);

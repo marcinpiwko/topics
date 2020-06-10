@@ -13,6 +13,7 @@ import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -50,6 +51,7 @@ public class UserApiController implements UserApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> deleteUser(Long id) {
         try {
             userService.deleteUser(id);
@@ -78,6 +80,7 @@ public class UserApiController implements UserApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> getUser(Long id) {
         try {
             return ApiResponse.ok(userTranslator.translateToUserGetResponse(userService.getUserById(id)));

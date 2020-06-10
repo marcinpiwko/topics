@@ -22,7 +22,7 @@ public class TopicReservation {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "USR_ID", name = "TRS_USR_ID", nullable = false)
-    private User user;
+    private User student;
 
     @Column(name = "TRS_RESERVATION_DATE", nullable = false)
     private Date reservationDate;

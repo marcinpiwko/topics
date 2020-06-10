@@ -32,7 +32,7 @@ public class SubjectTranslator {
         subjectGetResponse.setName(subject.getName());
         subjectGetResponse.setDescription(subject.getDescription());
         subjectGetResponse.setId(subject.getId());
-        subjectGetResponse.setTeacher(userTranslator.translateToUserGetResponse(subject.getUser()));
+        subjectGetResponse.setTeacher(userTranslator.translateToUserGetResponse(subject.getTeacher()));
         subjectGetResponse.setEcts(subject.getEcts());
         return subjectGetResponse;
     }

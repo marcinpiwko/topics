@@ -13,6 +13,7 @@ import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -27,6 +28,7 @@ public class SubjectTopicApiController implements SubjectTopicApi {
     private final TopicTranslator topicTranslator;
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> createSubjectTopic(Long subjectId, @Valid TopicCreateRequest topicCreateRequest) {
         try {
             return ApiResponse.ok(new IdResponse(subjectService.createSubjectTopic(subjectId, topicTranslator.translateToService(topicCreateRequest))));
@@ -39,6 +41,7 @@ public class SubjectTopicApiController implements SubjectTopicApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> updateSubjectTopic(Long subjectId, Long topicId, @Valid TopicUpdateRequest topicUpdateRequest) {
         try {
             subjectService.updateSubjectTopic(subjectId, topicId, topicTranslator.translateToService(topicUpdateRequest));
@@ -49,6 +52,7 @@ public class SubjectTopicApiController implements SubjectTopicApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<? extends ResponseForm> deleteSubjectTopic(Long subjectId, Long topicId) {
         try {
             subjectService.deleteSubjectTopic(subjectId, topicId);

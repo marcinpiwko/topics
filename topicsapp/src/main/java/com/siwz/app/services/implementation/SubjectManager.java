@@ -120,8 +120,8 @@ public class SubjectManager implements SubjectService {
         if(newSubject.getEcts() != null) {
             originalSubject.setEcts(newSubject.getEcts());
         }
-        if(newSubject.getUser() != null) {
-            originalSubject.setUser(newSubject.getUser());
+        if(newSubject.getTeacher() != null) {
+            originalSubject.setTeacher(newSubject.getTeacher());
         }
         subjectRepository.save(originalSubject);
     }

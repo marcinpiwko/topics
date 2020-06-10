@@ -1,5 +1,7 @@
 package com.siwz.app.api.security;
 
+import com.siwz.app.persistence.model.Role;
+import com.siwz.app.persistence.model.User;
 import com.siwz.app.services.interfaces.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +31,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         final String requestTokenHeader = request.getHeader("Authorization");
         String username = null;
         String jwtToken = null;
-
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
@@ -44,14 +45,22 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.loadUserByUsername(username);
-            if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            if (jwtTokenUtil.validateToken(jwtToken, userDetails) && checkLoggedUserById(request, (User) userDetails)) {
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                            userDetails, null, userDetails.getAuthorities());
+                    usernamePasswordAuthenticationToken
+                            .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
         chain.doFilter(request, response);
+    }
+
+    private Boolean checkLoggedUserById(HttpServletRequest request, User user) {
+        if(request.getServletPath().contains("users")) {
+            Long pathUserId = Long.valueOf(request.getRequestURI().split("/api/users/")[1].split("/")[0]);
+            return Role.RoleType.TEACHER.equals(user.getRole().getType()) || user.getId().equals(pathUserId);
+        }
+        return true;
     }
 }
