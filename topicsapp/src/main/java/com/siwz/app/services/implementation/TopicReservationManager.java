@@ -40,10 +40,10 @@ public class TopicReservationManager implements TopicReservationService {
     public void deleteTopicReservation(Long userId, Long subjectId, Long topicId) throws ApplicationException {
         Topic topic = topicService.getTopicById(topicId, subjectService.getSubjectById(subjectId));
         User user = userService.getUserById(userId);
-        if(!topicReservationRepository.existsByTopicAndUser(topic, user)) {
+        if(!topicReservationRepository.existsByTopicAndStudent(topic, user)) {
             throw new ApplicationException(DAOError.DAO_TOPIC_RESERVATION_NOT_FOUND, topicId, userId);
         }
-        topicReservationRepository.deleteByTopicAndUser(topic, user);
+        topicReservationRepository.deleteByTopicAndStudent(topic, user);
     }
 
     private Boolean validate(Topic topic, User user, Long subjectId) throws ApplicationException {
