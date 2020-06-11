@@ -39,7 +39,7 @@ To run the application:
 1) git clone
 2) make sure you have node-js library installed on your PC
 3) create postgresql database topics with owner topic/topic  (port 5432)
-4) run mvn clean&install which produces 2 .jar files
+4) run mvn clean&install in root directory which produces 2 .jar files
 5) run both applications
 
 _Backend team:_
