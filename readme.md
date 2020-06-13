@@ -17,7 +17,7 @@ All API endpoints require JWT Authentication except:
 - POST /users.
 
 Moreover, validation for user roles is also configured. Default role for new user is STUDENT.
-Flyway script creates default admin account (admin/admin123) with role TEACHER.
+Flyway script creates admin account (admin/admin123) with role TEACHER.
 
 #### Stack for backend:
 - Spring Boot 2.2.6.RELEASE
@@ -26,14 +26,14 @@ Flyway script creates default admin account (admin/admin123) with role TEACHER.
 - Postgresql database
 - Flyway for migration
 - Swagger docs v3
-- Lombok 
+- Lombok (+ Log4j2)
 
-#### Stack for fronted:
+#### Stack for frontend:
 - Spring Boot 2.2.6.RELEASE
 - Spring RestTemplate for API communication
-- Vaadin framework for fronted components
+- Vaadin framework for frontend components
 
-###### Both backend and fronted use JDK 1.8.
+###### Both backend and frontend use JDK 1.8.
 
 To run the application:
 1) git clone
@@ -48,5 +48,5 @@ _Backend team:_
 
 _Frontend team:_
 - Ambroży Pala,
-- Alek Nosal
+- Aleksander Nosal
 
