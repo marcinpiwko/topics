@@ -1,14 +1,27 @@
 package com.siwz.web.model;
 
+
 public class User {
+    private Long id;
+
     private String name;
     private String email;
     private String password;
+    private String handle;
 
     public User(String name, String email, String password){
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getHandle() {
+        return handle;
+    }
+
+    public void setHandle(String handle) {
+        this.handle = handle;
     }
 
     public String getName(){
@@ -28,5 +41,28 @@ public class User {
     }
     public void setPassword(String password){
         this.password = password;
+    }
+
+    @Override
+    public int hashCode() {
+        if(id == null) {
+            return super.hashCode();
+        }
+        return id.intValue();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+        if(id == null) {
+            return false;
+        }
+        if(!(obj instanceof User)) {
+            return false;
+        }
+        User other = (User) obj;
+        return id.equals(other.id);
     }
 }
