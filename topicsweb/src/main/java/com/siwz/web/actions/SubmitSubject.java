@@ -40,5 +40,6 @@ public class SubmitSubject extends VerticalLayout {
             VerticalLayout vertical= new VerticalLayout(text, nameField, descriptionField, ectsField, button);
             vertical.addClassName("vertical");
 
+            add(vertical);
     }
 }
