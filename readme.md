@@ -18,6 +18,7 @@ All API endpoints require JWT Authentication except:
 
 Moreover, validation for user roles is also configured. Default role for new user is STUDENT.
 Flyway script creates admin account (admin/admin123) with role TEACHER.
+Server logs are stored in topicsapp/logs/application.log file.
 
 #### Stack for backend:
 - Spring Boot 2.2.6.RELEASE
@@ -25,7 +26,7 @@ Flyway script creates admin account (admin/admin123) with role TEACHER.
 - jsonwebtoken 0.9.1
 - Postgresql database
 - Flyway for migration
-- Swagger docs v3
+- Swagger (OpenApi 3.0)
 - Lombok (+ Log4j2)
 
 #### Stack for frontend:
