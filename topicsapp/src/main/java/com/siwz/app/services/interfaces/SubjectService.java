@@ -28,5 +28,5 @@ public interface SubjectService {
 
     void deleteSubjectTopic(Long subjectId, Long topicId) throws ApplicationException;
 
-    Boolean checkIfSubjectExists(Long subjectId);
+    boolean checkIfSubjectExists(Long subjectId);
 }

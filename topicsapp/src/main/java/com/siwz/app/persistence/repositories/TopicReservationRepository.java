@@ -11,7 +11,7 @@ public interface TopicReservationRepository extends JpaRepository<TopicReservati
 
     Long countByTopic(Topic topic);
 
-    Boolean existsByTopicAndStudent(Topic topic, User user);
+    boolean existsByTopicAndStudent(Topic topic, User user);
 
     void deleteByTopicAndStudent(Topic topic, User user);
 

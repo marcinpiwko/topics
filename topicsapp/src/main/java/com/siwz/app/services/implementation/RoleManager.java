@@ -15,7 +15,7 @@ public class RoleManager implements RoleService {
     private final RoleRepository roleRepository;
 
     @Override
-    public Boolean checkIfRoleExists(Role.RoleType type) {
+    public boolean checkIfRoleExists(Role.RoleType type) {
         return roleRepository.existsByType(type);
     }
 

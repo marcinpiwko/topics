@@ -29,9 +29,9 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     Optional<Topic> findByIdAndSubject(Long topicId, Subject subject) throws ApplicationException;
 
-    Boolean existsByName(String name);
+    boolean existsByName(String name);
 
     void deleteByIdAndSubject(Long topicId, Subject subject);
 
-    Boolean existsByIdAndSubject(Long topicId, Subject subject);
+    boolean existsByIdAndSubject(Long topicId, Subject subject);
 }

@@ -8,11 +8,13 @@ import com.siwz.app.services.interfaces.TopicService;
 import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class TopicManager implements TopicService {
@@ -24,6 +26,7 @@ public class TopicManager implements TopicService {
     @Override
     public Long createTopic(Topic topic) throws ApplicationException {
         if(topicRepository.existsByName(topic.getName())) {
+            log.warn("createTopic with name " + topic.getName() + " failed, topic already exists");
             throw new ApplicationException(DAOError.DAO_TOPIC_ALREADY_EXISTS, topic.getName());
         }
         topicRepository.save(topic);
@@ -34,6 +37,7 @@ public class TopicManager implements TopicService {
     public void updateTopic(Long topicId, Topic newTopic) throws ApplicationException {
         Optional<Topic> originalTopic = topicRepository.findByIdAndSubject(topicId, newTopic.getSubject());
         if(!originalTopic.isPresent()) {
+            log.warn("updateTopic with id: " + topicId + " failed, topic not found for subjectId: " + newTopic.getSubject().getId());
             throw new ApplicationException(DAOError.DAO_TOPIC_NOT_FOUND, topicId);
         }
         updateTopicData(originalTopic.get(), newTopic);
@@ -42,9 +46,11 @@ public class TopicManager implements TopicService {
     @Override
     public void deleteTopic(Long topicId, Subject subject) throws ApplicationException {
         if(!topicRepository.existsByIdAndSubject(topicId, subject)) {
+            log.warn("deleteTopic with id: " + topicId + " failed, topic not found for subjectId: " + subject.getId());
             throw new ApplicationException(DAOError.DAO_TOPIC_NOT_FOUND, topicId);
         }
         if(topicReservationRepository.countByTopic(topicRepository.findById(topicId).get()) != 0) {
+            log.warn("deleteTopic with id: " + topicId + " failed, topic has active assignments");
             throw new ApplicationException(DAOError.DAO_TOPIC_ACTIVE_RESERVATIONS, topicId);
         }
         topicRepository.deleteByIdAndSubject(topicId, subject);

@@ -12,8 +12,10 @@ import com.siwz.app.utils.DateTimeUtil;
 import com.siwz.app.utils.errors.ApplicationException;
 import com.siwz.app.utils.errors.DAOError;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class TopicReservationManager implements TopicReservationService {
@@ -31,9 +33,16 @@ public class TopicReservationManager implements TopicReservationService {
         Topic topic = topicService.getTopicById(topicId, subjectService.getSubjectById(subjectId));
         User user = userService.getUserById(userId);
         if(!validate(topic, user, subjectId)) {
+            log.warn("reserveTopic with id: " + topicId + " for userId: " + userId + " and subjectId: " + subjectId + " failed");
             throw new ApplicationException(DAOError.DAO_USER_SUBJECT_TOPIC_EXISTS, user.getId(), subjectId);
         }
-        return executeReservation(topic, user);
+        Long reservationId = executeReservation(topic, user);
+        log.info("reserveTopic for user id: "
+                + userId + " and subject id: "
+                + subjectId + " and topic id: "
+                + topicId + ", reservation id: "
+                + reservationId);
+        return reservationId;
     }
 
     @Override
@@ -41,12 +50,17 @@ public class TopicReservationManager implements TopicReservationService {
         Topic topic = topicService.getTopicById(topicId, subjectService.getSubjectById(subjectId));
         User user = userService.getUserById(userId);
         if(!topicReservationRepository.existsByTopicAndStudent(topic, user)) {
+            log.warn("deleteTopicReservation with id: " + topicId + " for userId: " + userId + " and subjectId: " + subjectId + " failed");
             throw new ApplicationException(DAOError.DAO_TOPIC_RESERVATION_NOT_FOUND, topicId, userId);
         }
         topicReservationRepository.deleteByTopicAndStudent(topic, user);
+        log.info("deleteTopicReservation for user id: "
+                + userId + " and subject id: "
+                + subjectId + " and topic id: "
+                + topicId);
     }
 
-    private Boolean validate(Topic topic, User user, Long subjectId) throws ApplicationException {
+    private boolean validate(Topic topic, User user, Long subjectId) throws ApplicationException {
         if((topic.getLimit() - topicReservationRepository.countByTopic(topic)) == 0) {
             throw new ApplicationException(DAOError.DAO_TOPIC_REACHED_LIMIT, topic.getId());
         }

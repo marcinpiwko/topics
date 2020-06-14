@@ -5,7 +5,7 @@ import com.siwz.app.utils.errors.ApplicationException;
 
 public interface RoleService {
 
-    Boolean checkIfRoleExists(Role.RoleType type);
+    boolean checkIfRoleExists(Role.RoleType type);
 
     Role getRoleByType(Role.RoleType type) throws ApplicationException;
 }
