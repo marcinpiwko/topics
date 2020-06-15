@@ -1,0 +1,38 @@
+body {
+    /*background: linear-gradient(180deg, rgba(28, 40, 85, 1) 0%, rgba(52, 61, 95, 1) 69.29%, rgba(95, 99, 114, 1) 88.03%, rgba(128, 128, 128, 1) 100%);*/
+    background: yellow;
+}
+
+    .description{
+        margin-left: auto;
+        margin-right: auto;
+        color: rgba(98, 98, 98, 1);
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .subjectName {
+         margin-left: auto;
+         margin-right: auto;
+         width: 44%;
+    }
+
+.subjectDescription {
+    margin-left: auto;
+    margin-right: auto;
+    width: 44%;
+}
+
+.subjectEcts {
+    margin-left: auto;
+    margin-right: auto;
+    width: 44%;
+}
+vaadin-login-form{
+    position: absolute;
+    right: 0;
+    top: 45px;
+}
+vaadin-login-form-wrapper{
+    background: yellow;
+}
