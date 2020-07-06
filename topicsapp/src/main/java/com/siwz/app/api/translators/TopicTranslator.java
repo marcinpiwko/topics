@@ -4,7 +4,6 @@ import com.siwz.app.api.forms.topic.TopicCreateRequest;
 import com.siwz.app.api.forms.topic.TopicGetResponse;
 import com.siwz.app.api.forms.topic.TopicUpdateRequest;
 import com.siwz.app.persistence.model.Topic;
-import com.siwz.app.utils.DateTimeUtil;
 
 public class TopicTranslator {
 
@@ -25,7 +24,6 @@ public class TopicTranslator {
         topic.setLimit(topicCreateRequest.getLimit());
         topic.setDescription(topicCreateRequest.getDescription());
         topic.setDeadlineDate(topicCreateRequest.getDeadlineDate());
-        topic.setCreationDate(DateTimeUtil.getCurrentDate());
         return topic;
     }
 

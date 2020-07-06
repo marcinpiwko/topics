@@ -1,5 +1,6 @@
 package com.siwz.app.persistence.model;
 
+import com.siwz.app.utils.DateTimeUtil;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,5 +27,10 @@ public class TopicReservation {
 
     @Column(name = "TRS_RESERVATION_DATE", nullable = false)
     private Date reservationDate;
+
+    @PrePersist
+    void reservationDate() {
+        this.reservationDate = DateTimeUtil.getCurrentDate();
+    }
 
 }

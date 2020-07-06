@@ -1,5 +1,6 @@
 package com.siwz.app.persistence.model;
 
+import com.siwz.app.utils.DateTimeUtil;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -34,5 +35,10 @@ public class Topic {
 
     @Column(name = "TOP_DEADLINE_DATE")
     private Date deadlineDate;
+
+    @PrePersist
+    void creationDate() {
+        this.creationDate = DateTimeUtil.getCurrentDate();
+    }
 
 }

@@ -76,7 +76,6 @@ public class TopicReservationManager implements TopicReservationService {
         TopicReservation topicReservation = new TopicReservation();
         topicReservation.setTopic(topic);
         topicReservation.setStudent(user);
-        topicReservation.setReservationDate(DateTimeUtil.getCurrentDate());
         topicReservationRepository.save(topicReservation);
         return topicReservation.getId();
     }

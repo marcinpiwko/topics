@@ -4,7 +4,6 @@ import com.siwz.app.api.forms.user.UserCreateRequest;
 import com.siwz.app.api.forms.user.UserGetResponse;
 import com.siwz.app.api.forms.user.UserUpdateRequest;
 import com.siwz.app.persistence.model.User;
-import com.siwz.app.utils.DateTimeUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,7 +19,6 @@ public class UserTranslator {
         user.setFirstName(userCreateRequest.getFirstName());
         user.setLastName(userCreateRequest.getLastName());
         user.setIndexNo(userCreateRequest.getIndexNo());
-        user.setRegistrationDate(DateTimeUtil.getCurrentDate());
         return user;
     }
 
